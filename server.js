@@ -562,6 +562,33 @@ const fixDatabaseSync = async () => {
     if (tableCheck.length === 0) {
       console.log('⚠️ Services table NOT FOUND. Creating it now...');
       
+      await sequelize.query(`
+        CREATE TABLE IF NOT EXISTS categories (
+          categoryId INT PRIMARY KEY AUTO_INCREMENT,
+          name VARCHAR(100) NOT NULL,
+          slug VARCHAR(120) NOT NULL UNIQUE,
+          description TEXT,
+          parentId INT NULL,
+          image VARCHAR(255),
+          isActive BOOLEAN DEFAULT true,
+          createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          FOREIGN KEY (parentId) REFERENCES categories(categoryId) ON DELETE SET NULL
+        ) ENGINE=InnoDB;
+      `);
+
+      await sequelize.query(`
+        CREATE TABLE IF NOT EXISTS users (
+          userId INT PRIMARY KEY AUTO_INCREMENT,
+          userName VARCHAR(255) NOT NULL,
+          email VARCHAR(255) NOT NULL UNIQUE,
+          password VARCHAR(255),
+          role VARCHAR(50) DEFAULT 'user',
+          isActive BOOLEAN DEFAULT true,
+          createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+          updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB;
+      `);
       // Create services table using raw SQL
       await sequelize.query(`
         CREATE TABLE services (
