@@ -47,7 +47,7 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
-        model: 'categories',
+        model: 'Category',
         key: 'categoryId'
       }
     },
