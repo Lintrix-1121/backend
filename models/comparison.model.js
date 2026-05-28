@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       primaryKey: true
     },
     userId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
         model: 'users',
@@ -33,7 +33,7 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     categoryId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
         model: 'categories',
