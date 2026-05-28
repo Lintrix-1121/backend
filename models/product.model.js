@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize) => {
   const Product = sequelize.define('product', {
     productId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true
     },
@@ -44,7 +44,7 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     categoryId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
         model: 'categories',
@@ -52,7 +52,7 @@ module.exports = (sequelize, Sequelize) => {
       }
     },
     subCategoryId: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: true,
       references: {
         model: 'categories',
@@ -148,6 +148,7 @@ module.exports = (sequelize, Sequelize) => {
     }
   }, {
     tableName: 'products',
+    freezeTableName: true,
     timestamps: true,
     indexes: [
       {
