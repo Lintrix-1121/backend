@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const CareerJob = sequelize.define('CareerJob', {
-    id: {
+    careerJobId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true

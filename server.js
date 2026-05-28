@@ -223,7 +223,7 @@ models.Blog.findOne({
     console.error('❌ Association test error:', error.message);
   });
 
-// Initialize ALL services - ADD CAREER SERVICE
+// Initialize ALL services 
 const UserService = require('./services/user.service');
 const CartService = require('./services/cart.service');
 const ServiceService = require('./services/service.service'); 

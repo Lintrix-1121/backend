@@ -19,12 +19,16 @@ const setupAssociations = (models) => {
   // Product associations
   Product.belongsTo(Category, {
     foreignKey: 'categoryId',
-    as: 'category'
+    as: 'category',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
   
   Product.belongsTo(Category, {
     foreignKey: 'subCategoryId',
-    as: 'subCategory'
+    as: 'subCategory',
+    onDelete: 'SET NULL',
+    onUpdate: 'CASCADE'
   });
 
   // Category associations
@@ -131,12 +135,12 @@ const setupAssociations = (models) => {
  
   //CareerJob association
   CareerJob.hasMany(CareerApplication, {
-    foreignKey: 'CareerJobId',
-    as: 'application'
+    foreignKey: 'careerJobId',
+    as: 'applications'
   });
 
   CareerApplication.belongsTo(CareerJob, {
-    foreignKey: 'CareerJobId',
+    foreignKey: 'careerJobId',
     as: 'job'
   });
  
